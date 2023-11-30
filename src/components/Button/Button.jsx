@@ -1,6 +1,7 @@
 export const Button = ({
   text = "Botón",
   variant = "btn-primary",
+
   functionClick,
 }) => {
   return (

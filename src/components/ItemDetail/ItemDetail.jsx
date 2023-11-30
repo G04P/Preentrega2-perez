@@ -11,7 +11,7 @@ export const ItemDetail = ({ description, price, stock, name, img }) => {
           <h5 className="card-title">{name}</h5>
           <img src={img} alt="" />
           <p className="card-text"> {description} </p>
-          <p>Precio: {price} </p>
+          <p>Precio: ${price} </p>
           <ItemCount stock={stock} onAdd={onAdd} />
         </div>
       </div>
