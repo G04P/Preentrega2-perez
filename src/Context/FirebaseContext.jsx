@@ -7,18 +7,19 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { db } from "../config/fireBaseConfig";
 
 export const FirebaseContext = createContext(null);
 
-export const FirebaseContextProvider = () => {
+export const FirebaseContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(null);
   const [changes, setChanges] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
-  getProductsDB = (category) => {
+  const getProductsDB = (category) => {
+    setProduct(null);
     const myProducts = category
       ? query(collection(db, "products"), where("category", "==", category))
       : query(collection(db, "products"));
@@ -33,6 +34,7 @@ export const FirebaseContextProvider = () => {
   };
 
   const getProductById = (id) => {
+    setIsLoading(true);
     const productRef = doc(db, "products", id);
     getDoc(productRef).then((resp) => {
       if (resp.exists()) {
@@ -41,6 +43,7 @@ export const FirebaseContextProvider = () => {
           ...resp.data(),
         };
         setProduct(prod);
+        setIsLoading(false);
       }
     });
   };

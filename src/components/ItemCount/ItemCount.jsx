@@ -33,6 +33,7 @@ export const ItemCount = ({ stock, initial = 1, onAdd }) => {
           functionClick={decrement}
         ></Button>
       </div>
+
       <button className="btn btn-success mt-2" onClick={() => onAdd(count)}>
         Agregar al carrito
       </button>

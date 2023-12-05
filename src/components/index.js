@@ -9,4 +9,5 @@ export * from "./ItemListContainer/ItemListContainer";
 export * from "./NavBar/NavBar";
 export * from "./Widgets/CartWidget";
 export * from "./Widgets/ConverseShoe";
+export * from "./Widgets/DeleteWidget";
 export * from "./index";

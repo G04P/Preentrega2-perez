@@ -1,22 +1,23 @@
 import { useContext, useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
 import { ItemList } from "../ItemList/ItemList";
-import { seedProductsDb } from "../../utils/seedProductsDb";
-
-// import { CartContext } from "../../Context/CartContex";
 import { FirebaseContext } from "../../Context/FirebaseContext";
+import { seedProductsDb } from "../../productMock";
 
-export const ItemListContainer = () => {
-  // const {} = useContext(CartContext);
-  const { getProductsDB, isLoading, products, changes } =
+// eslint-disable-next-line react/prop-types
+export const ItemListContainer = ({ greeting }) => {
+  const { category } = useParams();
+  const { getProductsDB, products, isLoading, changes } =
     useContext(FirebaseContext);
+  // const [filter, setFilter] = useState(null);
 
   useEffect(() => {
+    // setFilter(category);
     getProductsDB();
-  }, [changes]);
-
+  }, [category, changes]);
   return (
     <>
+      <div>{greeting}</div>
       {isLoading ? (
         <h2>Cargando Productos...</h2>
       ) : (
